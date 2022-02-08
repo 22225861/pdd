@@ -1,47 +1,75 @@
+// 1. 引入对应模块
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter  from 'vue-router'
+
+import Home from './../views/Home/Home'
+import Recommend from './../views/Recommend/Recommend'
+import Search from './../views/Search/Search'
+import Chat from './../views/Chat/Chat'
+import Me from './../views/Me/Me'
+
+import Hot from '../views/Home/Children/Hot/Hot'
+import Box from './../views/Home/Children/Box'
+import Dress from './../views/Home/Children/Dress'
+import Ele from './../views/Home/Children/Ele'
+import Food from './../views/Home/Children/Food'
+import General from './../views/Home/Children/General'
+import Man from './../views/Home/Children/Man'
+import Mbaby from './../views/Home/Children/MBaby'
+import Shirt from './../views/Home/Children/Shirt'
 
 
+// 2. 声明使用
+Vue.use(VueRouter);
 
-Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    redirect:'/home'
-
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Home/Home.vue')
-  },
-  {
-    path: '/me',
-    name: 'Me',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Me/Me.vue')
-  },
-  {
-    path: '/search',
-    name: 'Search',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Search/Search.vue')
-  },
-  {
-    path: '/recommend',
-    name: 'Recommend',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Recommend/Recommend.vue')
-  },
-  {
-    path: '/chat',
-    name: 'Chat',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Chat/Chat.vue')
-  }
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
-
-export default router
+// 3. 输出路由对象
+export default  new VueRouter({
+  // 3.1 配置一级路由
+  routes: [
+    {
+      path: '/home',
+      component: Home,
+      children: [
+        // 热门版块
+        {path: 'hot', component: Hot},
+        // 服饰版块
+        {path: 'dress', component: Dress},
+        // 鞋包版块
+        {path: 'box', component: Box},
+        // 母婴版块
+        {path: 'mbaby', component: Mbaby},
+        // 百货版块
+        {path: 'general', component: General},
+        // 食品版块
+        {path: 'food', component: Food},
+        // 内衣版块
+        {path: 'shirt', component: Shirt},
+        // 男装版块
+        {path: 'man', component: Man},
+        // 电器版块
+        {path: 'ele', component: Ele},
+        {path: '/home',redirect: '/home/hot'}
+      ]
+    },
+    {
+      path: '/recommend',
+      component: Recommend
+    },
+    {
+      path: '/search',
+      component: Search
+    },
+    {
+      path: '/chat',
+      component: Chat
+    },
+    {
+      path: '/me',
+      component: Me
+    },
+    {
+      path: '/',
+      redirect: '/home'
+    },
+  ]
+});

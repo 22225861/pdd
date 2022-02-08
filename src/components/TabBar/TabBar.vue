@@ -1,28 +1,26 @@
 <template>
-<div class="bottom-tab">
-  <span class="tab-item" @click="switchTo('/home')">
-    <img :src="'/home'===$route.path? tabBarImgArr[0].selected:tabBarImgArr[0].normal" alt="">
-    <span :class="{on:'/home'===$route.path}">首页</span>
-  </span>
-  <span class="tab-item"  @click="switchTo('/recommend')">
-    <img :src="'/recommend'===$route.path? tabBarImgArr[1].selected:tabBarImgArr[1].normal" alt="">
-    <span :class="{on:'/recommend'===$route.path}">推荐</span>
-
-  </span>
-  <span class="tab-item"  @click="switchTo('/search')">
-    <img :src="'/search'===$route.path? tabBarImgArr[2].selected:tabBarImgArr[2].normal" alt="">
-    <span :class="{on:'/search'===$route.path}">搜索</span>
-  </span>
-  <span class="tab-item"  @click="switchTo('/chat')">
-    <img :src="'/chat'===$route.path? tabBarImgArr[3].selected:tabBarImgArr[3].normal" alt="">
-    <span :class="{on:'/chat'===$route.path}">聊天</span>
-  </span>
-  <span class="tab-item"  @click="switchTo('/me')">
-    <img :src="'/me'===$route.path? tabBarImgArr[4].selected:tabBarImgArr[4].normal" alt="">
-    <span :class="{on:'/me'===$route.path}">我的</span>
-  </span>
-
-</div>
+  <div class="bottom-tab">
+        <span class="tab-item" @click="switchTo('/home')">
+           <img :src="$route.path.includes('/home') ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="">
+           <span :class="{on: $route.path.includes('/home')}">首页</span>
+        </span>
+    <span class="tab-item" @click="switchTo('/recommend')">
+           <img :src="$route.path.includes('/recommend') ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="">
+           <span :class="{on: $route.path.includes('/recommend')}">推荐</span>
+        </span>
+    <span class="tab-item" @click="switchTo('/search')">
+           <img :src="$route.path.includes('/search') ? tabBarImgArr[2].selected : tabBarImgArr[2].normal" alt="">
+           <span :class="{on:$route.path.includes('/search')}">搜索</span>
+        </span>
+    <span class="tab-item" @click="switchTo('/chat')">
+           <img :src="$route.path.includes('/chat') ? tabBarImgArr[3].selected : tabBarImgArr[3].normal" alt="">
+           <span :class="{on: $route.path.includes('/chat')}">聊天</span>
+        </span>
+    <span class="tab-item" @click="switchTo('/me')">
+           <img :src="$route.path.includes('/me') ? tabBarImgArr[4].selected : tabBarImgArr[4].normal" alt="">
+           <span :class="{on: $route.path.includes('/me')}">我的</span>
+        </span>
+  </div>
 </template>
 
 <script>
